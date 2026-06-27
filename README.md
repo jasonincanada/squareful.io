@@ -2,11 +2,17 @@
 
 Squareful is a square tiling puzzle.
 
-A board consists of a 36×36 square tiled with one 1×1 square, two 2×2 squares, three 3×3 squares, and so on up to eight 8×8 squares.  Some of them are removed, leaving blank areas on the board, and the puzzle is to deduce which squares are missing, and how to arrange them in the blank areas.
+A board consists of a 36×36 square tiled with **one 1×1 square**, **two 2×2 squares**, **three 3×3 squares**, and so on up to **eight 8×8 squares**.  Some of them are removed, leaving blank areas on the board, and the puzzle is to deduce which squares are missing, and how to arrange them in the blank areas.
 
 The old version of this project is here: https://github.com/jasonincanada/squareful
 
 That one is built with Blazor which I've abandonded because it's overkill.  This project is written in plain JavaScript to the extent possible, no frameworks.
+
+## Example board
+
+Here is the first board (of 18,656 possible boards) with some squares missing. Try to deduce the missing squares and where they go!
+
+![Board 1 Puzzle](./images/board-1-puzzle.png)
 
 ## Current Features
 
