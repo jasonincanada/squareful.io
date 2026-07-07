@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>squareful.io</title>
+    <link rel="stylesheet" href="css/board.css">
     <script type="module" src="js/main.js"></script>
 </head>
 <body>
@@ -18,6 +19,7 @@
         <input id="board-number" type="number" min="1" max="18656" value="1">
         <button id="select-board">Go</button>
         <button id="get-puzzle-url">Get Puzzle URL</button>
+        <button id="help-button">Help</button>
     </div>
 
     <hr/>
@@ -29,6 +31,29 @@
         viewBox="0 0 36 36"
         style="background: #666; border: 1px solid black">
     </svg>
+
+    <dialog id="help-dialog" class="help-dialog">
+        <form method="dialog">
+            <div class="help-header">
+                <h2>How to Play</h2>
+                <button id="close-help" value="close" aria-label="Close help">Close</button>
+            </div>
+
+            <p>
+                Each board is a 36 by 36 square tiled with smaller squares. The goal is to
+                figure out which hidden squares belong in the dark empty spaces.
+            </p>
+
+            <ul>
+                <li>Use the board buttons, board number field, or Go button to choose a puzzle.</li>
+                <li>Left-click a visible square to hide it.</li>
+                <li>When squares are hidden, move over the board to preview a tentative square.</li>
+                <li>Use the mouse wheel over the board to change the preview size from 1 to 8.</li>
+                <li>Left-click an empty space to place the matching hidden square there.</li>
+                <li>Use Get Puzzle URL to copy a shareable link for the current board and hidden squares.</li>
+            </ul>
+        </form>
+    </dialog>
     
 </body>
 </html>

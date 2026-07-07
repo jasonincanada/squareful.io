@@ -11,6 +11,8 @@ const lastButton = document.getElementById("last-board");
 const boardNumberInput = document.getElementById("board-number");
 const selectBoardButton = document.getElementById("select-board");
 const getPuzzleUrlButton = document.getElementById("get-puzzle-url");
+const helpButton = document.getElementById("help-button");
+const helpDialog = document.getElementById("help-dialog");
 
 const repo = new PuzzleRepository();
 const game = new Game(repo);
@@ -206,6 +208,15 @@ getPuzzleUrlButton.addEventListener("click", async () => {
     }
 
     window.prompt("Puzzle URL", url);
+});
+
+helpButton.addEventListener("click", () => {
+    helpDialog.showModal();
+});
+
+helpDialog.addEventListener("click", (event) => {
+    if (event.target === helpDialog)
+        helpDialog.close();
 });
 
 const initialPuzzle = parsePuzzleHash(window.location.hash);

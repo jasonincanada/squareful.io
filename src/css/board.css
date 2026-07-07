@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+}
+
+.help-dialog {
+    max-width: 560px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 0;
+}
+
+.help-dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+}
+
+.help-dialog form {
+    padding: 20px;
+}
+
+.help-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.help-header h2 {
+    margin: 0;
+}
+
+.help-dialog p {
+    margin: 0 0 12px;
+    line-height: 1.45;
+}
+
+.help-dialog ul {
+    margin: 0;
+    padding-left: 24px;
+    line-height: 1.45;
+}
