@@ -10,6 +10,7 @@ const previousButton = document.getElementById("previous-board");
 const lastButton = document.getElementById("last-board");
 const boardNumberInput = document.getElementById("board-number");
 const selectBoardButton = document.getElementById("select-board");
+const randomPuzzleButton = document.getElementById("random-puzzle");
 const getPuzzleUrlButton = document.getElementById("get-puzzle-url");
 const helpButton = document.getElementById("help-button");
 const helpDialog = document.getElementById("help-dialog");
@@ -21,6 +22,7 @@ const boardCount = 18656;
 const puzzleHashPrefix = "#p=";
 const minPreviewSize = 1;
 const maxPreviewSize = 8;
+const randomPuzzleExtraSquareCount = 4;
 
 let previewSize = 1;
 let previewSquare = null;
@@ -114,6 +116,15 @@ async function loadPuzzle(boardId, hiddenMask = 0n) {
     renderCurrentBoard();
 }
 
+async function loadRandomPuzzle() {
+    const boardId = Math.floor(Math.random() * boardCount) + 1;
+
+    await game.loadBoard(boardId);
+    game.board.hideRandomPuzzle(randomPuzzleExtraSquareCount);
+    previewSquare = null;
+    renderCurrentBoard();
+}
+
 firstButton.addEventListener("click", async () => {
     await loadPuzzle(1);
 });
@@ -149,6 +160,10 @@ boardNumberInput.addEventListener("keydown", async (event) => {
 
     event.preventDefault();
     selectBoardButton.click();
+});
+
+randomPuzzleButton.addEventListener("click", async () => {
+    await loadRandomPuzzle();
 });
 
 svg.addEventListener("click", (event) => {
