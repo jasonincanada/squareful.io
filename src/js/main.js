@@ -14,6 +14,11 @@ const repo = new PuzzleRepository();
 const game = new Game(repo);
 const renderer = new BoardRenderer(svg);
 const puzzleHashPrefix = "#p=";
+const minPreviewSize = 1;
+const maxPreviewSize = 8;
+
+let previewSize = 1;
+let previewSquare = null;
 
 function parseBase36BigInt(text) {
     let value = 0n;
@@ -55,9 +60,42 @@ function puzzleUrl() {
     return url.toString();
 }
 
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function boardPointFromEvent(event) {
+    const bounds = svg.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width * BoardRenderer.BoardSize;
+    const y = (event.clientY - bounds.top) / bounds.height * BoardRenderer.BoardSize;
+
+    return { x, y };
+}
+
+function previewSquareFromEvent(event) {
+    if (!game.board.hasHiddenSquares())
+        return null;
+
+    const point = boardPointFromEvent(event);
+    const size = previewSize;
+    const col = clamp(Math.floor(point.x), 0, BoardRenderer.BoardSize - size);
+    const row = clamp(Math.floor(point.y), 0, BoardRenderer.BoardSize - size);
+
+    return { row, col, size };
+}
+
+function updatePreviewSquare(event) {
+    previewSquare = previewSquareFromEvent(event);
+    renderCurrentBoard();
+}
+
 async function renderCurrentBoard() {
     title.textContent = `Board #${game.boardId}`;
-    renderer.render(game.board);
+
+    if (previewSquare && !game.board.hasHiddenSquares())
+        previewSquare = null;
+
+    renderer.render(game.board, previewSquare);
 
     previousButton.disabled = game.boardId <= 1;
     nextButton.disabled     = game.boardId >= 18656;
@@ -66,6 +104,7 @@ async function renderCurrentBoard() {
 async function loadPuzzle(boardId, hiddenMask = 0n) {
     await game.loadBoard(boardId);
     game.board.hideSquaresFromMask(hiddenMask);
+    previewSquare = null;
     renderCurrentBoard();
 }
 
@@ -92,12 +131,37 @@ svg.addEventListener("click", (event) => {
         return;
 
     const squareGroup = event.target.closest("g[data-square-index]");
-    if (!squareGroup)
+    if (squareGroup) {
+        game.board.hideSquareAt(Number(squareGroup.dataset.squareIndex));
+        updatePreviewSquare(event);
         return;
+    }
 
-    game.board.hideSquareAt(Number(squareGroup.dataset.squareIndex));
+    if (previewSquare)
+        game.board.showSquareAt(previewSquare.row, previewSquare.col, previewSquare.size);
+
     renderCurrentBoard();
 });
+
+svg.addEventListener("mousemove", (event) => {
+    updatePreviewSquare(event);
+});
+
+svg.addEventListener("mouseleave", () => {
+    previewSquare = null;
+    renderCurrentBoard();
+});
+
+svg.addEventListener("wheel", (event) => {
+    if (!game.board.hasHiddenSquares())
+        return;
+
+    event.preventDefault();
+
+    const direction = event.deltaY < 0 ? 1 : -1;
+    previewSize = clamp(previewSize + direction, minPreviewSize, maxPreviewSize);
+    updatePreviewSquare(event);
+}, { passive: false });
 
 getPuzzleUrlButton.addEventListener("click", async () => {
     const url = puzzleUrl();
