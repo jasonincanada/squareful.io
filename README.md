@@ -14,6 +14,8 @@ Here is the first board (of 18,656 possible boards) with some squares missing. T
 
 ![Board 1 Puzzle](./images/board-1-puzzle.png)
 
+The URL code for this puzzle: http://127.0.0.1:5500/#p=1.fxszk
+
 ## Current Features
 
 * Load puzzle boards from static text files
@@ -57,6 +59,7 @@ src/
 ### Setup
 
 Install the **Live Server** extension by **Ritwick Dey**.
+
 ## Architecture
 
 The application is intentionally split into a few simple layers:
@@ -69,9 +72,10 @@ The application is intentionally split into a few simple layers:
 
 ## Planned Features
 
-* Puzzle editor
-    * Click squares to remove them
-* Tile placement tools
-    * Mouse-wheel square size selection
-    * Hover preview
-* URL encoding of complete puzzle state for easy sharing
+- [ ] Puzzle editor
+  - [x] Click squares to remove them
+- [x] Tile placement tools
+  - [x] Mouse-wheel square size selection
+  - [x] Hover preview
+- [x] URL encoding of complete puzzle state for easy sharing
+- [ ] Click on a square to find all boards with that square there
