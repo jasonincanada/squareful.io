@@ -8,11 +8,14 @@ const firstButton = document.getElementById("first-board");
 const nextButton = document.getElementById("next-board");
 const previousButton = document.getElementById("previous-board");
 const lastButton = document.getElementById("last-board");
+const boardNumberInput = document.getElementById("board-number");
+const selectBoardButton = document.getElementById("select-board");
 const getPuzzleUrlButton = document.getElementById("get-puzzle-url");
 
 const repo = new PuzzleRepository();
 const game = new Game(repo);
 const renderer = new BoardRenderer(svg);
+const boardCount = 18656;
 const puzzleHashPrefix = "#p=";
 const minPreviewSize = 1;
 const maxPreviewSize = 8;
@@ -45,7 +48,7 @@ function parsePuzzleHash(hash) {
     const boardId = Number.parseInt(boardIdText, 36);
     const hiddenMask = parseBase36BigInt(hiddenMaskText);
 
-    if (!Number.isInteger(boardId) || boardId < 1 || boardId > 18656 || hiddenMask === null)
+    if (!Number.isInteger(boardId) || boardId < 1 || boardId > boardCount || hiddenMask === null)
         return null;
 
     return { boardId, hiddenMask };
@@ -98,7 +101,8 @@ async function renderCurrentBoard() {
     renderer.render(game.board, previewSquare);
 
     previousButton.disabled = game.boardId <= 1;
-    nextButton.disabled     = game.boardId >= 18656;
+    nextButton.disabled     = game.boardId >= boardCount;
+    boardNumberInput.value = game.boardId;
 }
 
 async function loadPuzzle(boardId, hiddenMask = 0n) {
@@ -123,7 +127,26 @@ nextButton.addEventListener("click", async () => {
 });
 
 lastButton.addEventListener("click", async () => {
-    await loadPuzzle(18656);
+    await loadPuzzle(boardCount);
+});
+
+selectBoardButton.addEventListener("click", async () => {
+    const boardId = Number.parseInt(boardNumberInput.value, 10);
+
+    if (!Number.isInteger(boardId) || boardId < 1 || boardId > boardCount) {
+        boardNumberInput.value = game.boardId;
+        return;
+    }
+
+    await loadPuzzle(boardId);
+});
+
+boardNumberInput.addEventListener("keydown", async (event) => {
+    if (event.key !== "Enter")
+        return;
+
+    event.preventDefault();
+    selectBoardButton.click();
 });
 
 svg.addEventListener("click", (event) => {

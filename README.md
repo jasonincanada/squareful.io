@@ -16,6 +16,10 @@ Here is the first board (of 18,656 possible boards) with some squares missing. T
 
 The URL code for this puzzle: http://127.0.0.1:5500/#p=1.fxszk
 
+Try also this one! http://127.0.0.1:5500/#p=e0y.4tl5b75
+
+(It's the example puzzle from the old repo here: https://github.com/jasonincanada/squareful#example)
+
 ## Current Features
 
 * Load puzzle boards from static text files
