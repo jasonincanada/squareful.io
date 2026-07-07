@@ -26,4 +26,20 @@ export class Board {
     hideSquareAt(index) {
         this.squares[index].visible = false;
     }
+
+    hideSquaresFromMask(mask) {
+        for (const [index, square] of this.squares.entries())
+            square.visible = (mask & (1n << BigInt(index))) === 0n;
+    }
+
+    hiddenSquareMask() {
+        let mask = 0n;
+
+        for (const [index, square] of this.squares.entries()) {
+            if (!square.visible)
+                mask |= 1n << BigInt(index);
+        }
+
+        return mask;
+    }
 }
