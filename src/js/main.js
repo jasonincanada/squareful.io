@@ -62,11 +62,20 @@ function parsePuzzleHash(hash) {
 
 function puzzleUrl() {
     const url = new URL(window.location.href);
+
+    url.hash = puzzleHash();
+    return url.toString();
+}
+
+function puzzleHash() {
     const boardIdText = game.boardId.toString(36);
     const hiddenMaskText = game.board.hiddenSquareMask().toString(36);
 
-    url.hash = `${puzzleHashPrefix}${boardIdText}.${hiddenMaskText}`;
-    return url.toString();
+    return `${puzzleHashPrefix}${boardIdText}.${hiddenMaskText}`;
+}
+
+function showPuzzleUrlInAddressBar() {
+    history.replaceState(null, "", puzzleHash());
 }
 
 function clamp(value, min, max) {
@@ -152,6 +161,7 @@ async function loadRandomPuzzle() {
     previewSquare = null;
     clearSolvedFeedback();
     renderCurrentBoard();
+    showPuzzleUrlInAddressBar();
 }
 
 firstButton.addEventListener("click", async () => {
