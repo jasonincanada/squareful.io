@@ -4,6 +4,7 @@ import { Game } from "./game.js";
 
 const title = document.getElementById("board-title");
 const svg = document.getElementById("board");
+const puzzleStatus = document.getElementById("puzzle-status");
 const firstButton = document.getElementById("first-board");
 const nextButton = document.getElementById("next-board");
 const previousButton = document.getElementById("previous-board");
@@ -26,6 +27,7 @@ const randomPuzzleExtraSquareCount = 4;
 
 let previewSize = 1;
 let previewSquare = null;
+let solvedFeedbackTimeout = null;
 
 function parseBase36BigInt(text) {
     let value = 0n;
@@ -96,6 +98,31 @@ function updatePreviewSquare(event) {
     renderCurrentBoard();
 }
 
+function clearSolvedFeedback() {
+    window.clearTimeout(solvedFeedbackTimeout);
+    svg.classList.remove("solved-feedback");
+    puzzleStatus.classList.remove("solved-feedback");
+    puzzleStatus.textContent = "";
+}
+
+function showSolvedFeedback() {
+    window.clearTimeout(solvedFeedbackTimeout);
+    svg.classList.remove("solved-feedback");
+    puzzleStatus.classList.remove("solved-feedback");
+
+    requestAnimationFrame(() => {
+        svg.classList.add("solved-feedback");
+        puzzleStatus.textContent = "Puzzle solved!";
+        puzzleStatus.classList.add("solved-feedback");
+    });
+
+    solvedFeedbackTimeout = window.setTimeout(() => {
+        svg.classList.remove("solved-feedback");
+        puzzleStatus.classList.remove("solved-feedback");
+        puzzleStatus.textContent = "";
+    }, 1600);
+}
+
 async function renderCurrentBoard() {
     title.textContent = `Board #${game.boardId}`;
 
@@ -113,6 +140,7 @@ async function loadPuzzle(boardId, hiddenMask = 0n) {
     await game.loadBoard(boardId);
     game.board.hideSquaresFromMask(hiddenMask);
     previewSquare = null;
+    clearSolvedFeedback();
     renderCurrentBoard();
 }
 
@@ -122,6 +150,7 @@ async function loadRandomPuzzle() {
     await game.loadBoard(boardId);
     game.board.hideRandomPuzzle(randomPuzzleExtraSquareCount);
     previewSquare = null;
+    clearSolvedFeedback();
     renderCurrentBoard();
 }
 
@@ -177,10 +206,13 @@ svg.addEventListener("click", (event) => {
         return;
     }
 
-    if (previewSquare)
+    const placedSquare = previewSquare &&
         game.board.showSquareAt(previewSquare.row, previewSquare.col, previewSquare.size);
 
     renderCurrentBoard();
+
+    if (placedSquare && !game.board.hasHiddenSquares())
+        showSolvedFeedback();
 });
 
 svg.addEventListener("mousemove", (event) => {

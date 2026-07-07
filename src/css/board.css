@@ -2,6 +2,21 @@ body {
     font-family: sans-serif;
 }
 
+#board.solved-feedback {
+    animation: solved-board-glow 900ms ease-out;
+}
+
+.puzzle-status {
+    min-height: 1.5em;
+    margin-top: 8px;
+    font-weight: 700;
+}
+
+.puzzle-status.solved-feedback {
+    animation: solved-message-pop 1600ms ease-out;
+    color: #176d31;
+}
+
 .help-dialog {
     max-width: 560px;
     border: 1px solid #333;
@@ -38,4 +53,38 @@ body {
     margin: 0;
     padding-left: 24px;
     line-height: 1.45;
+}
+
+@keyframes solved-board-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgb(39 174 96 / 0);
+    }
+
+    30% {
+        box-shadow: 0 0 0 6px rgb(39 174 96 / 0.85), 0 0 22px 8px rgb(255 214 102 / 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgb(39 174 96 / 0);
+    }
+}
+
+@keyframes solved-message-pop {
+    0% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
