@@ -4,5 +4,6 @@ export class Square {
         this.row = row;
         this.col = col;
         this.size = size;
+        this.visible = true;
     }
 }

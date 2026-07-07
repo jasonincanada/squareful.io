@@ -22,4 +22,8 @@ export class Board {
                 levels[col + i] += size;
         }
     }
+
+    hideSquareAt(index) {
+        this.squares[index].visible = false;
+    }
 }

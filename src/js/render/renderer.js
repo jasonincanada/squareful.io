@@ -10,8 +10,13 @@ export class BoardRenderer {
     render(board) {
         this.svg.replaceChildren();
 
-        for (const square of board.squares) {
+        for (const [index, square] of board.squares.entries()) {
+            if (!square.visible)
+                continue;
+
             const group = document.createElementNS(SVG, "g");
+            group.dataset.squareIndex = index;
+            group.style.cursor = "pointer";
 
             const rect = document.createElementNS(SVG, "rect");
             rect.setAttribute("x", square.col);

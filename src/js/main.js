@@ -44,4 +44,16 @@ lastButton.addEventListener("click", async () => {
     await loadAndRender(18656);
 });
 
+svg.addEventListener("click", (event) => {
+    if (event.button !== 0)
+        return;
+
+    const squareGroup = event.target.closest("g[data-square-index]");
+    if (!squareGroup)
+        return;
+
+    game.board.hideSquareAt(Number(squareGroup.dataset.squareIndex));
+    renderCurrentBoard();
+});
+
 await loadAndRender(1);
