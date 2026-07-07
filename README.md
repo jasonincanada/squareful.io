@@ -14,8 +14,8 @@ The app can generate a random puzzle by choosing a board, hiding the 1x1 square,
 
 You can also share specific puzzles by URL. For example:
 
-* http://127.0.0.1:5500/#p=1.fxszk
-* http://127.0.0.1:5500/#p=e0y.4tl5b75
+* https://squareful.io/#p=1.fxszk
+* https://squareful.io/#p=e0y.4tl5b75
 
 The second example is based on the example puzzle from the old repo: https://github.com/jasonincanada/squareful#example
 
