@@ -25,7 +25,7 @@ const minPreviewSize = 1;
 const maxPreviewSize = 8;
 const randomPuzzleExtraSquareCount = 4;
 
-let previewSize = 1;
+let previewSize = 8;
 let previewSquare = null;
 let solvedFeedbackTimeout = null;
 
@@ -96,8 +96,8 @@ function previewSquareFromEvent(event) {
 
     const point = boardPointFromEvent(event);
     const size = previewSize;
-    const col = clamp(Math.floor(point.x), 0, BoardRenderer.BoardSize - size);
-    const row = clamp(Math.floor(point.y), 0, BoardRenderer.BoardSize - size);
+    const col = clamp(Math.floor(point.x - size / 2 + 0.5), 0, BoardRenderer.BoardSize - size);
+    const row = clamp(Math.floor(point.y - size / 2 + 0.5), 0, BoardRenderer.BoardSize - size);
 
     return { row, col, size };
 }
@@ -158,6 +158,7 @@ async function loadRandomPuzzle() {
 
     await game.loadBoard(boardId);
     game.board.hideRandomPuzzle(randomPuzzleExtraSquareCount);
+    previewSize = maxPreviewSize;
     previewSquare = null;
     clearSolvedFeedback();
     renderCurrentBoard();
