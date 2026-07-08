@@ -2,6 +2,34 @@ body {
     font-family: sans-serif;
 }
 
+#random-puzzle {
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 10px;
+    border: 1px solid #0f7a3f;
+    border-radius: 4px;
+    background: #18a957;
+    color: #fff;
+    font-weight: 700;
+}
+
+#random-puzzle:hover {
+    background: #128646;
+}
+
+#random-puzzle:focus-visible {
+    outline: 3px solid #8ee6b5;
+    outline-offset: 2px;
+}
+
+#random-puzzle:active {
+    background: #0f6f3a;
+}
+
+#board {
+    margin-top: 20px;
+}
+
 #board.solved-feedback {
     animation: solved-board-glow 900ms ease-out;
 }
