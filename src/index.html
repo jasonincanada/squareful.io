@@ -13,18 +13,14 @@
     <h1 id="board-title"></h1>
 
     <div>
-        <button id="first-board">First Board</button>
         <button id="previous-board">Previous Board</button>
         <button id="next-board">Next Board</button>
-        <button id="last-board">Last Board</button>
         <input id="board-number" type="number" min="1" max="18656" value="1">
         <button id="select-board">Go</button>
         <button id="random-puzzle">Random Puzzle</button>
         <button id="get-puzzle-url">Get Puzzle URL</button>
         <button id="help-button">Help</button>
     </div>
-
-    <hr/>
 
     <svg
         id="board"
@@ -44,18 +40,15 @@
             </div>
 
             <p>
-                Each board is a 36 by 36 square tiled with smaller squares. The goal is to
-                figure out which hidden squares belong in the dark empty spaces.
+                Each board is a 36x36 square tiled with smaller squares. Every board has
+                one 1x1 tile, two 2x2 tiles, and so on up to eight 8x8 tiles.
             </p>
 
             <ul>
-                <li>Use the board buttons, board number field, or Go button to choose a puzzle.</li>
-                <li>Use Random Puzzle to choose a random board with a generated set of missing squares.</li>
-                <li>Left-click a visible square to hide it.</li>
-                <li>When squares are hidden, move over the board to preview a tentative square.</li>
-                <li>Use the mouse wheel over the board to change the preview size from 1 to 8.</li>
-                <li>Left-click an empty space to place the matching hidden square there.</li>
-                <li>Use Get Puzzle URL to copy a shareable link for the current board and hidden squares.</li>
+                <li>Click <strong>Random Puzzle</strong> to pick a random puzzle board.</li>
+                <li>Fill in the missing squares!</li>
+                <li>Use the mouse wheel to change the square size.</li>
+                <li>Left-click to place the square.</li>
             </ul>
         </form>
     </dialog>

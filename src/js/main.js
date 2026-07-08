@@ -5,10 +5,8 @@ import { Game } from "./game.js";
 const title = document.getElementById("board-title");
 const svg = document.getElementById("board");
 const puzzleStatus = document.getElementById("puzzle-status");
-const firstButton = document.getElementById("first-board");
 const nextButton = document.getElementById("next-board");
 const previousButton = document.getElementById("previous-board");
-const lastButton = document.getElementById("last-board");
 const boardNumberInput = document.getElementById("board-number");
 const selectBoardButton = document.getElementById("select-board");
 const randomPuzzleButton = document.getElementById("random-puzzle");
@@ -165,10 +163,6 @@ async function loadRandomPuzzle() {
     showPuzzleUrlInAddressBar();
 }
 
-firstButton.addEventListener("click", async () => {
-    await loadPuzzle(1);
-});
-
 previousButton.addEventListener("click", async () => {
     await game.previousBoard();
     renderCurrentBoard();
@@ -177,10 +171,6 @@ previousButton.addEventListener("click", async () => {
 nextButton.addEventListener("click", async () => {
     await game.nextBoard();
     renderCurrentBoard();
-});
-
-lastButton.addEventListener("click", async () => {
-    await loadPuzzle(boardCount);
 });
 
 selectBoardButton.addEventListener("click", async () => {
