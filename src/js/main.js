@@ -2,7 +2,6 @@ import { PuzzleRepository } from "./io/repository.js";
 import { BoardRenderer } from "./render/renderer.js";
 import { Game } from "./game.js";
 
-const title = document.getElementById("board-title");
 const svg = document.getElementById("board");
 const puzzleStatus = document.getElementById("puzzle-status");
 const nextButton = document.getElementById("next-board");
@@ -131,8 +130,6 @@ function showSolvedFeedback() {
 }
 
 async function renderCurrentBoard() {
-    title.textContent = `Board #${game.boardId}`;
-
     if (previewSquare && !game.board.hasHiddenSquares())
         previewSquare = null;
 
@@ -245,7 +242,7 @@ getPuzzleUrlButton.addEventListener("click", async () => {
 
             getPuzzleUrlButton.textContent = "Copied!";
             setTimeout(() => {
-                getPuzzleUrlButton.textContent = "Get puzzle URL";
+                getPuzzleUrlButton.textContent = "Share Link";
             }, 1200);
 
             return;

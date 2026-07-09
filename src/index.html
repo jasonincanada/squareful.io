@@ -10,17 +10,29 @@
 </head>
 <body>
     
-    <h1 id="board-title"></h1>
+    <header class="app-header">
+        <div class="toolbar" role="group" aria-label="Puzzle controls">
+            <div class="toolbar-group">
+                <button id="previous-board" type="button">Previous</button>
+                <button id="next-board" type="button">Next</button>
+            </div>
 
-    <div>
-        <button id="previous-board">Previous Board</button>
-        <button id="next-board">Next Board</button>
-        <input id="board-number" type="number" min="1" max="18656" value="1">
-        <button id="select-board">Go</button>
-        <button id="random-puzzle">Random Puzzle</button>
-        <button id="get-puzzle-url">Get Puzzle URL</button>
-        <button id="help-button">Help</button>
-    </div>
+            <div class="toolbar-group board-picker">
+                <label for="board-number">Board</label>
+                <input id="board-number" type="number" min="1" max="18656" value="1">
+                <button id="select-board" type="button">Go</button>
+            </div>
+
+            <div class="toolbar-group primary-group">
+                <button id="random-puzzle" type="button"><span aria-hidden="true">&#127922;</span> Random Puzzle</button>
+            </div>
+
+            <div class="toolbar-group utility-group">
+                <button id="get-puzzle-url" type="button">Share Link</button>
+                <button id="help-button" type="button">Help</button>
+            </div>
+        </div>
+    </header>
 
     <svg
         id="board"
