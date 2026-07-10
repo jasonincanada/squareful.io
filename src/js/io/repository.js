@@ -1,4 +1,7 @@
 
+// store this here so we don't have to wait for the fetch() call on the initial site load
+const startingBoardSequence = "225777645468853638316485548886687777";
+
 export class PuzzleRepository {
     boardFileFor(boardId) {
         const chunk = Math.floor((boardId - 1) / 100);
@@ -10,6 +13,9 @@ export class PuzzleRepository {
     }
 
     async load(boardId) {
+        if (boardId === 1)
+            return startingBoardSequence;
+
         const fileName = this.boardFileFor(boardId);
         const lineNumber = this.boardFileLineNumberFor(boardId);
 
