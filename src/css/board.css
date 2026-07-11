@@ -7,10 +7,51 @@ body {
 
 .app-header {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 16px 24px;
+    gap: 14px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #24241f;
+}
+
+.brand-mark {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.12));
+}
+
+.brand-mark rect:not(:first-child) {
+    fill: #f7f7f4;
+}
+
+.brand-mark .brand-mark-solution {
+    fill: #18a957;
+}
+
+.brand-copy h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.brand-copy h1 span {
+    color: #18a957;
+}
+
+.brand-copy p {
+    margin: 5px 0 0;
+    color: #66665d;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
 }
 
 .toolbar {
