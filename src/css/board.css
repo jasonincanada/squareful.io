@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 16px 24px;
 }
 
@@ -104,7 +105,7 @@ body {
 
 #board {
     display: block;
-    margin-top: 24px;
+    margin: 24px auto 0;
 }
 
 #board.solved-feedback {
@@ -115,6 +116,7 @@ body {
     min-height: 1.5em;
     margin-top: 8px;
     font-weight: 700;
+    text-align: center;
 }
 
 .puzzle-status.solved-feedback {
