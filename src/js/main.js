@@ -134,6 +134,7 @@ async function renderCurrentBoard() {
         previewSquare = null;
 
     renderer.render(game.board, previewSquare);
+    document.title = `${puzzleHash()} | squareful.io`;
 
     previousButton.disabled = game.boardId <= 1;
     nextButton.disabled     = game.boardId >= boardCount;
