@@ -126,7 +126,7 @@ function showSolvedFeedback() {
         svg.classList.remove("solved-feedback");
         puzzleStatus.classList.remove("solved-feedback");
         puzzleStatus.textContent = "";
-    }, 1600);
+    }, 2000);
 }
 
 async function renderCurrentBoard() {

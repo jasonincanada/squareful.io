@@ -103,25 +103,40 @@ body {
     background: #0f6f3a;
 }
 
-#board {
-    display: block;
+.board-stage {
+    position: relative;
+    width: fit-content;
     margin: 24px auto 0;
 }
 
+#board {
+    display: block;
+}
+
 #board.solved-feedback {
-    animation: solved-board-glow 900ms ease-out;
+    animation: solved-board-glow 2000ms ease-out;
 }
 
 .puzzle-status {
-    min-height: 1.5em;
-    margin-top: 8px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: rgb(23 109 49 / 0.92);
     font-weight: 700;
     text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%);
 }
 
 .puzzle-status.solved-feedback {
-    animation: solved-message-pop 1600ms ease-out forwards;
-    color: #176d31;
+    animation: solved-message-pop 2000ms ease-out forwards;
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
 }
 
 .help-dialog {
@@ -199,19 +214,20 @@ body {
 @keyframes solved-message-pop {
     0% {
         opacity: 0;
-        transform: translateY(-4px);
+        transform: translate(-50%, calc(-50% + 6px)) scale(0.95);
     }
 
     15% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, -50%) scale(1);
     }
 
-    80% {
+    70% {
         opacity: 1;
     }
 
     100% {
         opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
     }
 }

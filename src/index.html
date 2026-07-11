@@ -34,15 +34,17 @@
         </div>
     </header>
 
-    <svg
-        id="board"
-        width="720"
-        height="720"
-        viewBox="0 0 36 36"
-        style="background: #666; border: 1px solid black">
-    </svg>
+    <div class="board-stage">
+        <svg
+            id="board"
+            width="720"
+            height="720"
+            viewBox="0 0 36 36"
+            style="background: #666; border: 1px solid black">
+        </svg>
 
-    <div id="puzzle-status" class="puzzle-status" aria-live="polite"></div>
+        <div id="puzzle-status" class="puzzle-status" aria-live="polite"></div>
+    </div>
 
     <dialog id="help-dialog" class="help-dialog">
         <form method="dialog">
