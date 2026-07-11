@@ -118,7 +118,7 @@ body {
 }
 
 .puzzle-status.solved-feedback {
-    animation: solved-message-pop 1600ms ease-out;
+    animation: solved-message-pop 1600ms ease-out forwards;
     color: #176d31;
 }
 
