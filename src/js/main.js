@@ -164,11 +164,13 @@ async function loadRandomPuzzle() {
 previousButton.addEventListener("click", async () => {
     await game.previousBoard();
     renderCurrentBoard();
+    showPuzzleUrlInAddressBar();
 });
 
 nextButton.addEventListener("click", async () => {
     await game.nextBoard();
     renderCurrentBoard();
+    showPuzzleUrlInAddressBar();
 });
 
 selectBoardButton.addEventListener("click", async () => {
